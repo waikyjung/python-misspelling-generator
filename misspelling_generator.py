@@ -17,7 +17,7 @@ def Skipped_letters(word):
 def Double_letters(word):
     temp_list = []
     for x in range(len(word)):
-        misspelling = word[0:x +1] + word[x] + word[x + 1:len(word)]
+        misspelling = word[0:x+1] + word[x] + word[x + 1:len(word)]
         if misspelling not in temp_list:
             temp_list.append(misspelling)
     return temp_list
@@ -93,3 +93,4 @@ for word in words:
 df_misspellings_all.to_csv('misspellings.csv', index=False)
 
 print('Done!')
+
