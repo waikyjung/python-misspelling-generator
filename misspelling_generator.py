@@ -1,4 +1,4 @@
-import pandas as pd
+#import pandas as pd
 
 missed_keys_dict = {'a': 'qwsxz', 'b': 'vghn', 'c': 'xdfv', 'd': 'serfcx', 'e': 'w34rfds', 'f': 'drtgvc',
                         'g': 'ftyhbv', 'h': 'gyujnb', 'i': 'u89olkj', 'j': 'huikmn', 'k': 'jiolm', 'l': 'kop',
@@ -68,9 +68,17 @@ def Inserted_keys(word):
     return temp_list
 
 
-
 list_methods = [Skipped_letters, Double_letters, Reverse_letters, Skipped_spaces, Missed_keys, Inserted_keys]
-word = input("Enter a word: ").lower().strip()
+word = input("Enter a word: ").lower().replace('\"', '\'').strip()
+
+print("Original Word: " + word)
+misspellings = []
+for m in list_methods:
+    misspellings = m(word)
+    df_misspellings = pd.DataFrame(misspellings,columns=['Misspelling'])
+    df_misspellings.insert(0, 'Word', word)
+    df_misspellings.insert(1, 'Method', m.__name__)
+    df_misspellings_all = pd.concat([df_misspellings_all, df_misspellings], axis=0, ignore_index=True)
 
 print(word)
 exit()
@@ -79,20 +87,15 @@ exit()
 '''
 #Open file
 df_words = pd.read_csv(r'words.csv', encoding='utf-8', usecols=['Words'])
-list_methods = [Skipped_letters, Double_letters, Reverse_letters, Skipped_spaces, Missed_keys, Inserted_keys]
 words = []
 for i in df_words.index:
-    word = df_words[df_words.columns[0]][i].lower()
+    word = df_words[df_words.columns[0]][i].lower().replace('\"', '\'').strip()
     words.append(word)
-'''
 
 #Generate misspellings
 misspellings = []
 df_misspellings_all = pd.DataFrame(columns=['Word', 'Method', 'Misspelling'])
 for word in words:
-    word.strip()
-    word.replace('\"', '\'')
-
     for m in list_methods:
         misspellings = m(word)
         df_misspellings = pd.DataFrame(misspellings,columns=['Misspelling'])
@@ -102,7 +105,5 @@ for word in words:
 
 #Write file
 df_misspellings_all.to_csv('misspellings.csv', index=False)
-
 print('Done!')
-
-
+'''
