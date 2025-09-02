@@ -67,6 +67,7 @@ def Inserted_keys(word):
                 temp_list.append(misspelling2)
     return temp_list
 
+exit()
 #Open file
 df_words = pd.read_csv(r'words.csv', encoding='utf-8', usecols=['Words'])
 list_methods = [Skipped_letters, Double_letters, Reverse_letters, Skipped_spaces, Missed_keys, Inserted_keys]
@@ -93,4 +94,5 @@ for word in words:
 df_misspellings_all.to_csv('misspellings.csv', index=False)
 
 print('Done!')
+
 
