@@ -75,13 +75,15 @@ print("Original Word: " + word)
 misspellings = []
 for m in list_methods:
     misspellings = m(word)
+    for misspelling in misspellings
+        print(m.__name__ + ": " + misspelling)
+    '''
     df_misspellings = pd.DataFrame(misspellings,columns=['Misspelling'])
     df_misspellings.insert(0, 'Word', word)
     df_misspellings.insert(1, 'Method', m.__name__)
     df_misspellings_all = pd.concat([df_misspellings_all, df_misspellings], axis=0, ignore_index=True)
+    '''
 
-print(word)
-exit()
 
 #Old Code
 '''
