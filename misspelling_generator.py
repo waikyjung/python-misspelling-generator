@@ -9,7 +9,7 @@ missed_keys_dict = {'a': 'qwsxz', 'b': 'vghn', 'c': 'xdfv', 'd': 'serfcx', 'e': 
 def Skipped_letters(word):
     temp_list = []
     for x in range(len(word)):
-        misspelling = word[0:x] + word[x + 1:len(word)]
+        misspelling = word[0:x] + word[x+1:len(word)]
         if misspelling not in temp_list:
             temp_list.append(misspelling)
     return temp_list
@@ -17,7 +17,7 @@ def Skipped_letters(word):
 def Double_letters(word):
     temp_list = []
     for x in range(len(word)):
-        misspelling = word[0:x+1] + word[x] + word[x + 1:len(word)]
+        misspelling = word[0:x+1] + word[x] + word[x+1:len(word)]
         if misspelling not in temp_list:
             temp_list.append(misspelling)
     return temp_list
@@ -75,15 +75,8 @@ print("Original Word: " + word)
 misspellings = []
 for m in list_methods:
     misspellings = m(word)
-    for misspelling in misspellings
+    for misspelling in misspellings:
         print(m.__name__ + ": " + misspelling)
-    '''
-    df_misspellings = pd.DataFrame(misspellings,columns=['Misspelling'])
-    df_misspellings.insert(0, 'Word', word)
-    df_misspellings.insert(1, 'Method', m.__name__)
-    df_misspellings_all = pd.concat([df_misspellings_all, df_misspellings], axis=0, ignore_index=True)
-    '''
-
 
 #Old Code
 '''
